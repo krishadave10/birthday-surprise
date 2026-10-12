@@ -236,7 +236,14 @@
       animation: none;
     }
     .eyebrow { background: #fff0f3; letter-spacing: .08em; }
-    .intro { color: #906e7e; }
+    .intro {
+      width: min(100%, 370px);
+      margin: 0 auto;
+      color: #6385a0;
+      font-size: clamp(14px, 3.5vw, 16px);
+      line-height: 1.5;
+      text-wrap: balance;
+    }
     .penguin-scene {
       position: relative;
       display: grid;
@@ -437,7 +444,7 @@
       display: grid;
       place-items: center;
       width: min(100%, 360px);
-      height: 238px;
+      height: 250px;
       margin: 14px auto 18px;
       overflow: hidden;
       border: 1px solid #d5ebfa;
@@ -448,7 +455,7 @@
         repeating-linear-gradient(0deg, rgba(255,255,255,.62) 0 13px, transparent 13px 26px),
         #e8f7ff;
     }
-    .spider-hero { z-index: 1; width: 190px; height: 225px; overflow: visible; animation: hero-bob 2.7s ease-in-out infinite; }
+    .spider-hero { z-index: 1; width: 178px; height: auto; max-height: 220px; overflow: visible; animation: hero-bob 2.7s ease-in-out infinite; }
     @keyframes hero-bob { 50% { transform: translateY(-5px) rotate(-1deg); } }
     .hero-web { position: absolute; width: 48px; height: 58px; opacity: .35; animation: web-sway 3.2s ease-in-out infinite; }
     .hero-web.left { left: 12%; top: 35px; }
@@ -465,6 +472,23 @@
     @keyframes wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-15deg); } }
     .hero-shine { animation: shine 1.8s ease-in-out infinite alternate; }
     @keyframes shine { to { opacity: .45; transform: scale(.75); } }
+    .kitten-party-scene {
+      width: min(100%, 360px);
+      height: 176px;
+      margin: 4px auto 18px;
+      overflow: hidden;
+      border: 1px solid #d5ebfa;
+      border-radius: 22px;
+      background: linear-gradient(150deg, #effaff, #f8f4ff);
+    }
+    .kitten-party-art { display: block; width: 100%; height: 100%; }
+    .party-cat { transform-box: fill-box; transform-origin: center bottom; animation: party-bob 2.8s ease-in-out infinite; }
+    .party-cat.middle { animation-delay: .35s; }
+    .party-cat.right { animation-delay: .7s; }
+    .party-balloon { transform-box: fill-box; transform-origin: center bottom; animation: balloon-bob 3s ease-in-out infinite; }
+    .party-balloon.second { animation-delay: 1s; }
+    @keyframes party-bob { 50% { transform: translateY(-4px) rotate(1deg); } }
+    @keyframes balloon-bob { 50% { transform: translateY(-6px) rotate(-4deg); } }
     .cake-wrap { height: 190px; }
     .cake-art { width: min(100%, 250px); height: 180px; overflow: visible; }
     .cake-flame { transform-box: fill-box; transform-origin: center bottom; animation: flicker .7s ease-in-out infinite alternate; }
@@ -494,8 +518,9 @@
     }
     @media (max-width: 540px) {
       .access-card { border-radius: 23px; padding: 27px 20px; }
-      .spider-stage { height: 215px; }
-      .spider-hero { transform: scale(.9); }
+      .spider-stage { height: 230px; }
+      .spider-hero { width: 165px; max-height: 205px; }
+      .kitten-party-scene { height: 158px; }
       .cake-wrap { height: 170px; }
     }
   </style>
@@ -531,7 +556,7 @@
       <section class="card" aria-labelledby="greeting">
         <span class="eyebrow">A birthday wish, just for you ✨</span>
         <h1 id="greeting">Happy Birthday!</h1>
-        <p class="intro">The world got a little sweeter the day you were born 💌</p>
+        <p class="intro">I’m so happy the universe gave me you, my Kitkattuuu 💌</p>
 
         <div class="spider-stage" role="img" aria-label="An original cute blue web-slinging birthday hero holding a heart">
           <span class="hero-float one" aria-hidden="true">♡</span>
@@ -655,6 +680,60 @@
               </g>
               <path d="M106 121c3-8 13-8 16 0 3-8 13-8 16 0 0 8-16 18-16 18s-16-10-16-18z" fill="#fff" opacity=".9"/>
               <path d="M48 65c5-11 18-11 22 0 4-11 17-11 22 0 0 11-22 25-22 25S48 76 48 65zm109-27c4-8 14-8 17 0 3-8 13-8 17 0 0 9-17 19-17 19s-17-10-17-19z" fill="#9bcfee"/>
+            </svg>
+          </div>
+          <div class="kitten-party-scene" role="img" aria-label="Three original cute kittens celebrating a birthday with balloons and a tiny cake">
+            <svg class="kitten-party-art" viewBox="0 0 360 176" aria-hidden="true">
+              <path d="M0 142q90-20 180 0t180 0v34H0z" fill="#e1f3ff"/>
+              <g class="party-balloon">
+                <path d="M42 63q-18-17 0-35 18 18 0 35m0 0q-15 8 0 19" fill="#ff9eae" stroke="#fff" stroke-width="2"/>
+                <path d="M42 82q-4 15 3 28" fill="none" stroke="#8ebcda" stroke-width="1.5"/>
+                <path d="M42 34c-8-10 7-17 11-8 5-9 19-2 13 8-5 7-13 12-13 12s-8-5-11-12z" fill="#ff758f"/>
+              </g>
+              <g class="party-balloon second">
+                <path d="M317 57q-17-16 0-34 17 18 0 34m0 0q-14 8 0 18" fill="#ffd779" stroke="#fff" stroke-width="2"/>
+                <path d="M317 75q-4 15 3 31" fill="none" stroke="#8ebcda" stroke-width="1.5"/>
+                <path d="M317 32c-7-9 6-15 10-7 4-8 16-2 11 7-4 6-11 10-11 10s-7-4-10-10z" fill="#ff9eae"/>
+              </g>
+              <path d="m108 34 4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1zM253 56l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffc95f"/>
+              <g transform="translate(152 44)">
+                <path d="M0 23h55v16H0z" rx="5" fill="#fff" stroke="#83b8da" stroke-width="2"/>
+                <path d="M0 27q8 8 15 0t15 0 15 0 10 0v8H0z" fill="#f7a7b5"/>
+                <path d="M20 23c-5-8 6-14 9-5 4-9 15-3 9 5" fill="#fff" stroke="#83b8da" stroke-width="2"/>
+                <path d="M27 38v8m-8 0h16" stroke="#83b8da" stroke-width="2" stroke-linecap="round"/>
+              </g>
+              <g class="party-cat left">
+                <ellipse cx="84" cy="151" rx="42" ry="10" fill="#c4dfef"/>
+                <path d="M48 142q-5-31 10-39 4 12 15 14 15-9 28 0 10-4 15-14 13 12 7 39z" fill="#fffaf4" stroke="#9cb7c9" stroke-width="2.5"/>
+                <path d="m60 108-3-22 18 13m18 0 16-14-2 24" fill="#fffaf4" stroke="#9cb7c9" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="m61 101-1-8 8 6m35 1 7-7-1 10" fill="#f6b7c2"/>
+                <ellipse cx="76" cy="121" rx="3" ry="4" fill="#4d5865"/><ellipse cx="95" cy="121" rx="3" ry="4" fill="#4d5865"/>
+                <path d="m82 128 4 3 4-3m-4 3q-1 5-6 5m6-5q1 5 6 5" fill="none" stroke="#986e77" stroke-width="1.7" stroke-linecap="round"/>
+                <ellipse cx="68" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="102" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
+                <path d="M59 139q-11 2-15-5m59 5q11 2 15-5" fill="none" stroke="#9cb7c9" stroke-width="3" stroke-linecap="round"/>
+              </g>
+              <g class="party-cat middle">
+                <ellipse cx="180" cy="153" rx="43" ry="9" fill="#c4dfef"/>
+                <path d="M145 146q-7-37 12-44 7 11 23 12 14-1 22-12 18 8 12 44z" fill="#fff" stroke="#8fa7bb" stroke-width="2.5"/>
+                <path d="m157 107-1-22 19 15m16 0 18-15-2 23" fill="#fff" stroke="#8fa7bb" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="m159 101-1-8 9 6m35 1 7-7-1 10" fill="#f5b3c0"/>
+                <path d="M169 121q5 6 10 0m6 0q5 6 10 0" fill="none" stroke="#4d5865" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="m177 129 3 2 3-2q-3 5-6 0" fill="#e8899a"/>
+                <ellipse cx="162" cy="130" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="198" cy="130" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
+                <path d="M153 140q-9 5-13-2m70 2q9 5 13-2" fill="none" stroke="#8fa7bb" stroke-width="3" stroke-linecap="round"/>
+                <path d="M171 94q8-15 18 0" fill="#82c8e8"/><circle cx="180" cy="92" r="3" fill="#ffcf68"/>
+              </g>
+              <g class="party-cat right">
+                <ellipse cx="276" cy="151" rx="41" ry="10" fill="#c4dfef"/>
+                <path d="M240 142q-5-32 10-40 5 12 17 14 15-9 28 0 10-4 15-14 13 12 7 40z" fill="#d9c9c5" stroke="#9e9ca6" stroke-width="2.5"/>
+                <path d="m252 108-3-22 18 13m18 0 16-14-2 24" fill="#d9c9c5" stroke="#9e9ca6" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="m253 101-1-8 8 6m35 1 7-7-1 10" fill="#f1b2bf"/>
+                <ellipse cx="268" cy="121" rx="3" ry="4" fill="#4d5865"/><ellipse cx="287" cy="121" rx="3" ry="4" fill="#4d5865"/>
+                <path d="m274 128 4 3 4-3m-4 3q-1 5-6 5m6-5q1 5 6 5" fill="none" stroke="#986e77" stroke-width="1.7" stroke-linecap="round"/>
+                <ellipse cx="260" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="294" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
+                <path d="M251 139q-10 3-14-4m58 4q10 3 14-4" fill="none" stroke="#9e9ca6" stroke-width="3" stroke-linecap="round"/>
+              </g>
+              <path d="M124 77c4-7 13-2 9 4-3 5-10 8-10 8s-7-5-7-10c0-5 7-7 8-2zm104 8c3-5 10-2 7 3-2 4-8 6-8 6s-6-4-6-8c0-4 6-6 7-1z" fill="#f28fa3"/>
             </svg>
           </div>
           <p class="wish">
