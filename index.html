@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f5">
+  <title>A little birthday surprise</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #542b43;
+      --pink: #ed7397;
+      --rose: #fff0f3;
+      --cream: #fffaf2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 15%, #ffe1eb 0, transparent 34%),
+        radial-gradient(ellipse at 92% 84%, #ffe9cf 0, transparent 35%),
+        var(--cream);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .sparkle {
+      position: fixed;
+      z-index: -1;
+      color: #ec9aae;
+      opacity: .45;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    .sparkle.one { top: 8%; left: 8%; font-size: 24px; }
+    .sparkle.two { top: 17%; right: 9%; font-size: 18px; animation-delay: 1s; }
+    .sparkle.three { bottom: 12%; left: 12%; font-size: 20px; animation-delay: 1.7s; }
+    @keyframes twinkle { to { opacity: .12; transform: scale(.7) rotate(22deg); } }
+    main {
+      width: min(680px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(24px, 6vw, 52px);
+      border: 1px solid #ffffff;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 22px 70px rgba(128, 69, 89, .13);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      animation: arrive .8s cubic-bezier(.2,.8,.2,1) both;
+    }
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff0f3;
+      color: #a34568;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 18px 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 8vw, 58px);
+      font-weight: 500;
+      letter-spacing: -.045em;
+      line-height: 1.08;
+    }
+    .intro { margin: 0; color: #866575; font-size: 16px; }
+    .cake-wrap { height: 180px; display: grid; place-items: center; margin: 14px 0 2px; }
+    .cake { position: relative; width: 180px; height: 145px; }
+    .plate {
+      position: absolute; bottom: 4px; left: 5px;
+      width: 170px; height: 17px; border-radius: 50%;
+      background: #f6cbd2; box-shadow: 0 7px 0 #edabb8;
+    }
+    .cake-body {
+      position: absolute; bottom: 20px; left: 24px;
+      width: 132px; height: 73px; border-radius: 12px 12px 18px 18px;
+      background: linear-gradient(#f7a9b6 0 22%, #fff0d9 22% 36%, #f38ca2 36%);
+      box-shadow: inset 0 -9px 0 rgba(185, 76, 111, .12);
+    }
+    .icing {
+      position: absolute; left: 24px; bottom: 78px; width: 132px; height: 27px;
+      border-radius: 50% 50% 9px 9px; background: #fff4e3;
+    }
+    .icing::before, .icing::after {
+      content: ""; position: absolute; top: 15px; width: 15px; height: 20px;
+      border-radius: 0 0 10px 10px; background: #fff4e3;
+    }
+    .icing::before { left: 25px; }
+    .icing::after { right: 28px; height: 15px; }
+    .candle {
+      position: absolute; z-index: 2; bottom: 100px; left: 82px;
+      width: 15px; height: 38px; border-radius: 5px 5px 2px 2px;
+      background: repeating-linear-gradient(135deg, #fff 0 6px, #f08baa 6px 11px);
+    }
+    .flame {
+      position: absolute; left: 2px; top: -20px; width: 11px; height: 17px;
+      border-radius: 70% 30% 65% 35%; background: #ffbd55;
+      transform: rotate(5deg); box-shadow: 0 0 18px #ffc45e;
+      transform-origin: center bottom; animation: flicker .7s ease-in-out infinite alternate;
+    }
+    @keyframes flicker { to { transform: rotate(-8deg) scale(.86); opacity: .8; } }
+    .wish {
+      margin: 0 auto 25px;
+      max-width: 490px;
+      color: #75586a;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(18px, 4vw, 21px);
+      line-height: 1.75;
+    }
+    .wish strong { color: #b94e70; font-weight: 600; }
+    .question {
+      margin: 28px 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(25px, 5.5vw, 34px);
+      line-height: 1.25;
+    }
+    .hint { margin: 0; color: #9b7e8c; font-size: 13px; }
+    .button-stage {
+      position: relative;
+      width: min(100%, 410px);
+      height: 82px;
+      margin: 12px auto 4px;
+    }
+    button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    #yes {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(calc(-100% - 9px));
+      padding: 0 25px;
+      color: white;
+      background: linear-gradient(135deg, #f184a0, #dc5f84);
+      box-shadow: 0 9px 20px rgba(220, 95, 132, .26);
+    }
+    #yes:hover { transform: translateX(calc(-100% - 9px)) translateY(-3px) scale(1.04); box-shadow: 0 13px 25px rgba(220, 95, 132, .34); }
+    #no {
+      position: absolute;
+      top: 14px;
+      left: calc(50% + 9px);
+      padding: 0 22px;
+      color: #7b6170;
+      background: #fff0f3;
+      border: 1px solid #f6d6df;
+      white-space: nowrap;
+    }
+    #no:hover { background: #ffe4eb; }
+    button:focus-visible { outline: 3px solid #7b4761; outline-offset: 4px; }
+    .quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 23px;
+    }
+    .quote {
+      padding: 14px 10px;
+      border: 1px solid #f7e5e8;
+      border-radius: 17px;
+      background: rgba(255, 248, 248, .8);
+      color: #856878;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .quote span { display: block; margin-bottom: 5px; font-family: system-ui, sans-serif; font-size: 17px; }
+    footer { padding: 18px 0 0; color: #a58a98; font-size: 12px; }
+    #answer {
+      display: none;
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fff0f3, #fff7eb);
+      animation: arrive .5s ease both;
+    }
+    #answer h2 { margin: 0 0 8px; color: #b94e70; font-family: Georgia, serif; font-size: 27px; }
+    #answer p { margin: 0; color: #75586a; line-height: 1.7; }
+    .heart {
+      position: fixed;
+      z-index: 5;
+      top: -35px;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+    @keyframes fall { to { transform: translateY(110vh) rotate(500deg); opacity: 0; } }
+    @media (max-width: 540px) {
+      main { padding-top: 14px; }
+      .card { border-radius: 24px; padding: 25px 19px; }
+      .quotes { grid-template-columns: 1fr; gap: 8px; margin-top: 14px; }
+      .quote { padding: 10px; }
+      .quote span { display: inline; margin-right: 5px; }
+      .cake-wrap { height: 155px; }
+      .cake { transform: scale(.88); }
+      .button-stage { height: 132px; }
+    }
+    body {
+      background:
+        radial-gradient(ellipse at 10% 18%, #ffe1eb 0, transparent 34%),
+        radial-gradient(ellipse at 92% 84%, #ffe9cf 0, transparent 35%),
+        #fffaf2;
+    }
+    main { width: min(620px, calc(100% - 28px)); padding-top: 28px; }
+    .gingham-frame {
+      padding: 11px;
+      border-radius: 32px;
+      background: repeating-conic-gradient(#f2b6bd 0 25%, #fff8f2 0 50%) 0 0 / 24px 24px;
+      box-shadow: 0 22px 70px rgba(128, 69, 89, .17);
+    }
+    .card {
+      padding: clamp(24px, 6vw, 46px);
+      border: 2px solid #fff;
+      border-radius: 24px;
+      background: #fffaf6;
+      box-shadow: none;
+      animation: none;
+    }
+    .eyebrow { background: #fff0f3; letter-spacing: .08em; }
+    .intro { color: #906e7e; }
+    .penguin-scene {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(100%, 360px);
+      height: 232px;
+      margin: 8px auto 2px;
+      overflow: hidden;
+      border: 1px solid #f8e1df;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 55%, #fff 0 34%, transparent 35%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.6) 0 13px, transparent 13px 26px),
+        #fff0ed;
+    }
+    .penguin {
+      width: 166px;
+      height: 190px;
+      overflow: visible;
+      animation: penguin-bob 2.7s ease-in-out infinite;
+    }
+    @keyframes penguin-bob { 50% { transform: translateY(-7px) rotate(2deg); } }
+    .scene-heart { position: absolute; color: #ed7797; animation: heart-float 2.5s ease-in-out infinite; }
+    .scene-heart.left { top: 48px; left: 20%; font-size: 25px; }
+    .scene-heart.right { top: 72px; right: 19%; font-size: 20px; animation-delay: .8s; }
+    @keyframes heart-float { 50% { transform: translateY(-10px) rotate(12deg); } }
+    .gift-open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      max-width: 100%;
+      min-height: 52px;
+      padding: 0 24px;
+      color: #fff;
+      background: #bd526e;
+      box-shadow: 0 7px 0 #98405b, 0 12px 22px rgba(152,64,91,.16);
+      font-size: 14px;
+      letter-spacing: .02em;
+      transition: box-shadow .18s ease, background .18s ease;
+    }
+    .gift-open:hover { transform: translateY(-2px); box-shadow: 0 9px 0 #98405b, 0 14px 24px rgba(152,64,91,.2); }
+    .gift-open:active { transform: translateY(4px); box-shadow: 0 3px 0 #98405b; }
+    .gift-icon { font-size: 22px; }
+    .gift-hint { margin: 14px 0 3px; color: #9a7b89; font-size: 13px; }
+    #surprise {
+      display: none;
+      padding-top: 25px;
+      animation: arrive .7s cubic-bezier(.2,.8,.2,1) both;
+    }
+    #surprise.open { display: block; }
+    #surprise .eyebrow { margin-bottom: 5px; }
+    #surprise .cake-wrap { margin-top: 3px; }
+    #surprise .wish { margin-bottom: 20px; }
+    #surprise .question { margin-top: 20px; }
+    #surprise .quotes { margin-top: 18px; }
+    .section-rule { width: 54px; height: 2px; margin: 0 auto 20px; background: #edb6c1; }
+    .button-stage { height: 92px; }
+    #yes { left: 50%; transform: translateX(calc(-100% - 9px)); }
+    #no { left: calc(50% + 9px); }
+    @media (max-width: 540px) {
+      main { padding-top: 16px; }
+      .gingham-frame { padding: 7px; border-radius: 25px; }
+      .card { padding: 23px 17px; border-radius: 19px; }
+      .penguin-scene { height: 208px; }
+      .scene-heart.left { left: 13%; }
+      .scene-heart.right { right: 12%; }
+      .button-stage { height: 132px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <span class="sparkle one" aria-hidden="true">✦</span>
+  <span class="sparkle two" aria-hidden="true">✧</span>
+  <span class="sparkle three" aria-hidden="true">✦</span>
+  <main>
+    <div class="gingham-frame">
+      <section class="card" aria-labelledby="greeting">
+        <span class="eyebrow">A birthday wish, just for you ✨</span>
+        <h1 id="greeting">Happy Birthday!</h1>
+        <p class="intro">Today deserves to be as special as you are 💌</p>
+
+        <div class="penguin-scene" role="img" aria-label="A little penguin holding a birthday heart">
+          <span class="scene-heart left" aria-hidden="true">♥</span>
+          <span class="scene-heart right" aria-hidden="true">♥</span>
+          <svg class="penguin" viewBox="0 0 180 200" aria-hidden="true">
+            <ellipse cx="90" cy="184" rx="53" ry="8" fill="#e8c7c5"/>
+            <path d="M42 89C42 47 60 24 90 24s48 23 48 65v52c0 25-21 39-48 39s-48-14-48-39z" fill="#344457"/>
+            <ellipse cx="90" cy="111" rx="34" ry="55" fill="#fffaf1"/>
+            <ellipse cx="58" cy="115" rx="12" ry="28" transform="rotate(19 58 115)" fill="#293b4b"/>
+            <ellipse cx="122" cy="115" rx="12" ry="28" transform="rotate(-19 122 115)" fill="#293b4b"/>
+            <ellipse cx="78" cy="78" rx="4" ry="5" fill="#293b4b"/>
+            <ellipse cx="102" cy="78" rx="4" ry="5" fill="#293b4b"/>
+            <path d="m84 89 6-4 6 4-6 6z" fill="#f3a849"/>
+            <ellipse cx="69" cy="88" rx="7" ry="4" fill="#f3a7aa" opacity=".75"/>
+            <ellipse cx="111" cy="88" rx="7" ry="4" fill="#f3a7aa" opacity=".75"/>
+            <path d="M71 159c-13 0-17 7-19 13 12 6 25 5 34-1-2-7-6-12-15-12zm38 0c-9 0-13 5-15 12 9 6 22 7 34 1-2-6-6-13-19-13z" fill="#f3a849"/>
+            <path d="M61 35c2-18 15-27 29-27s27 9 29 27z" fill="#ed7995"/>
+            <path d="m85 10 5-9 6 9" fill="#f3a849"/>
+            <circle cx="90" cy="17" r="3" fill="#fff2d6"/>
+            <path d="M112 123c5-13 21-13 24-2 3 10-12 20-24 28-12-8-27-18-24-28 3-11 19-11 24 2z" fill="#ed6f91" stroke="#fffaf1" stroke-width="3"/>
+          </svg>
+        </div>
+
+        <button class="gift-open" id="gift-open" type="button" aria-expanded="false" aria-controls="surprise">
+          <span class="gift-icon" aria-hidden="true">🎁</span> CLICK TO OPEN YOUR SURPRISE
+        </button>
+        <p class="gift-hint" id="gift-hint">A tiny penguin has a little something for you 🐧</p>
+
+        <div id="surprise" aria-hidden="true">
+          <div class="section-rule"></div>
+          <span class="eyebrow">A little note, from my heart 💌</span>
+          <div class="cake-wrap" aria-label="A little birthday cake with a candle">
+            <div class="cake" aria-hidden="true">
+              <div class="plate"></div><div class="cake-body"></div><div class="icing"></div>
+              <div class="candle"><div class="flame"></div></div>
+            </div>
+          </div>
+          <p class="wish">
+            Your smile is the reason my ordinary days feel extraordinary.
+            On your birthday, I just want you to know that
+            <strong>you are my favourite person in the whole world.</strong>
+            May all your dreams come true — and may I be part of every birthday wish! 🎂
+          </p>
+
+          <h2 class="question">Will you accept my gift and be mine, today and every day? 💗</h2>
+          <p class="hint">Answer from your heart (one button is a little shy 😉)</p>
+          <div class="button-stage" id="button-stage">
+            <button id="yes" type="button">YES! 💖</button>
+            <button id="no" type="button">No 🙈</button>
+          </div>
+
+          <div id="answer" role="status" aria-live="polite">
+            <h2>Yay! You made my day! 🥹💞</h2>
+            <p>Happy Birthday, my favourite person! It's your birthday, but I got the best gift — your YES! I promise to keep choosing you, making you smile, and celebrating you every single day. I love you endlessly! 🎂✨</p>
+          </div>
+
+          <div class="quotes" aria-label="Little love notes">
+            <div class="quote"><span>🌙</span>"With you, even ordinary moments feel magical."</div>
+            <div class="quote"><span>🧸</span>"My favourite place is right next to you."</div>
+            <div class="quote"><span>💌</span>"In every lifetime, I'd find and choose you again."</div>
+          </div>
+          <footer>Made with all my love, just for you ♡</footer>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script>
+    const surprise = document.getElementById("surprise");
+    document.getElementById("gift-open").addEventListener("click", (event) => {
+      surprise.classList.add("open");
+      surprise.setAttribute("aria-hidden", "false");
+      event.currentTarget.setAttribute("aria-expanded", "true");
+      document.getElementById("gift-hint").textContent = "Surprise! This little wish is just for you 💝";
+      surprise.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    const stage = document.getElementById("button-stage");
+    const noButton = document.getElementById("no");
+    let hasMoved = false;
+    function moveNoButton(event) {
+      const stageRect = stage.getBoundingClientRect();
+      const buttonRect = noButton.getBoundingClientRect();
+      const yesRect = document.getElementById("yes").getBoundingClientRect();
+      const maxX = Math.max(0, stageRect.width - buttonRect.width);
+      const maxY = Math.max(0, stageRect.height - buttonRect.height);
+      const currentX = parseFloat(noButton.style.left) || buttonRect.left - stageRect.left;
+      const currentY = parseFloat(noButton.style.top) || buttonRect.top - stageRect.top;
+      const yesLeft = yesRect.left - stageRect.left;
+      const yesRight = yesRect.right - stageRect.left;
+      const yesTop = yesRect.top - stageRect.top;
+      const yesBottom = yesRect.bottom - stageRect.top;
+      const pointerX = event && Number.isFinite(event.clientX) ? event.clientX - stageRect.left : null;
+      const pointerY = event && Number.isFinite(event.clientY) ? event.clientY - stageRect.top : null;
+      let x = currentX;
+      let y = currentY;
+      for (let attempt = 0; attempt < 40; attempt += 1) {
+        x = Math.random() * maxX;
+        y = Math.random() * maxY;
+        const overlapsYes = x < yesRight && x + buttonRect.width > yesLeft &&
+          y < yesBottom && y + buttonRect.height > yesTop;
+        const coversPointer = pointerX !== null && pointerY !== null &&
+          pointerX >= x - 12 && pointerX <= x + buttonRect.width + 12 &&
+          pointerY >= y - 12 && pointerY <= y + buttonRect.height + 12;
+        if (!overlapsYes && !coversPointer &&
+            Math.hypot(x - currentX, y - currentY) > Math.min(70, stageRect.width / 4)) break;
+      }
+      if (x < yesRight && x + buttonRect.width > yesLeft &&
+          y < yesBottom && y + buttonRect.height > yesTop) {
+        x = maxX;
+        y = maxY;
+      }
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+      noButton.style.transform = "none";
+      hasMoved = true;
+    }
+    noButton.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "touch") moveNoButton(event);
+    });
+    noButton.addEventListener("touchstart", moveNoButton, { passive: true });
+    noButton.addEventListener("focus", () => { if (hasMoved) moveNoButton(); });
+    noButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      moveNoButton();
+    });
+    document.getElementById("yes").addEventListener("click", () => {
+      document.getElementById("answer").style.display = "block";
+      document.getElementById("answer").scrollIntoView({ behavior: "smooth", block: "center" });
+      for (let i = 0; i < 46; i += 1) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = ["💖", "💕", "💗", "✨", "🌸"][Math.floor(Math.random() * 5)];
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.fontSize = `${14 + Math.random() * 18}px`;
+        heart.style.animationDuration = `${2.5 + Math.random() * 3}s`;
+        heart.style.animationDelay = `${Math.random() * 1.2}s`;
+        document.body.appendChild(heart);
+        window.setTimeout(() => heart.remove(), 7000);
+      }
+    });
+  </script>
+</body>
+</html>
