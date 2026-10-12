@@ -221,6 +221,18 @@
         #fffaf2;
     }
     main { width: min(620px, calc(100% - 28px)); padding-top: 28px; }
+    #birthday-site.book-opening { perspective: 1600px; }
+    #birthday-site.book-opening .card {
+      animation: book-page-open 1.35s cubic-bezier(.2,.78,.2,1) both;
+      transform-origin: left center;
+      backface-visibility: hidden;
+    }
+    @keyframes book-page-open {
+      0% { opacity: .4; transform: rotateY(-88deg) scale(.94); }
+      65% { opacity: 1; transform: rotateY(7deg) scale(1.01); }
+      84% { transform: rotateY(-2deg) scale(1); }
+      100% { opacity: 1; transform: rotateY(0) scale(1); }
+    }
     .gingham-frame {
       padding: 11px;
       border-radius: 32px;
@@ -456,9 +468,11 @@
         #e8f7ff;
     }
     .spider-hero, .hero-web, .hero-float { display: none; }
-    .birthday-penguin { position: relative; z-index: 1; width: min(100%, 350px); height: 100%; animation: hero-bob 2.8s ease-in-out infinite; }
+    .birthday-penguin-image { position: relative; z-index: 1; display: block; width: min(100%, 350px); height: 100%; object-fit: contain; }
+    .birthday-penguin { display: none; }
     @keyframes hero-bob { 50% { transform: translateY(-3px); } }
     .kitten-party-scene {
+      display: none;
       width: min(100%, 360px);
       height: 176px;
       margin: 4px auto 18px;
@@ -598,6 +612,7 @@
             <path d="m110 34 4 7 8 1-6 5 2 8-8-4-7 4 2-8-6-5 8-1z" fill="#ffd477" stroke="#fff" stroke-width="1.5"/>
             <path d="M48 91c-12-1-19-8-19-16 0-5 5-8 9-5 4 2 4 7 7 10m127 10c12-1 19-8 19-16 0-5-5-8-9-5-4 2-4 7-7 10" fill="none" stroke="#a3dcf7" stroke-width="2"/>
           </svg>
+          <img class="birthday-penguin-image" src="birthday-penguin.png" alt="Happy Birthday: a blue penguin holding a cupcake">
           <svg class="birthday-penguin" viewBox="0 0 360 270" aria-hidden="true">
             <text x="180" y="37" text-anchor="middle" fill="#ffd17a" stroke="#fff" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS, sans-serif" font-size="31" font-weight="900" letter-spacing="2">HAPPY</text>
             <text x="180" y="69" text-anchor="middle" fill="#ffd17a" stroke="#fff" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS, sans-serif" font-size="31" font-weight="900" letter-spacing="1">BIRTHDAY!</text>
@@ -776,6 +791,7 @@
       accessScreen.remove();
       const birthdaySite = document.getElementById("birthday-site");
       birthdaySite.classList.remove("locked");
+      birthdaySite.classList.add("book-opening");
       birthdaySite.setAttribute("aria-hidden", "false");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
