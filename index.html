@@ -455,23 +455,9 @@
         repeating-linear-gradient(0deg, rgba(255,255,255,.62) 0 13px, transparent 13px 26px),
         #e8f7ff;
     }
-    .spider-hero { z-index: 1; width: 178px; height: auto; max-height: 220px; overflow: visible; animation: hero-bob 2.7s ease-in-out infinite; }
-    @keyframes hero-bob { 50% { transform: translateY(-5px) rotate(-1deg); } }
-    .hero-web { position: absolute; width: 48px; height: 58px; opacity: .35; animation: web-sway 3.2s ease-in-out infinite; }
-    .hero-web.left { left: 12%; top: 35px; }
-    .hero-web.right { right: 12%; top: 63px; animation-delay: 1s; }
-    @keyframes web-sway { 50% { transform: translateY(-9px) rotate(9deg); opacity: .55; } }
-    .hero-float { position: absolute; z-index: 2; color: #6cb9e7; pointer-events: none; animation: float-up 3.5s ease-in-out infinite; }
-    .hero-float.one { left: 23%; top: 34px; font-size: 20px; }
-    .hero-float.two { right: 23%; top: 24px; font-size: 16px; animation-delay: 1.2s; }
-    .hero-float.three { right: 18%; bottom: 25px; font-size: 22px; animation-delay: .6s; }
-    @keyframes float-up { 50% { transform: translateY(-13px) rotate(12deg) scale(1.1); } }
-    .hero-cape { transform-box: fill-box; transform-origin: top center; animation: cape-flutter 1.5s ease-in-out infinite alternate; }
-    @keyframes cape-flutter { to { transform: skewX(-5deg) scaleX(.94); } }
-    .hero-wave { transform-box: view-box; transform-origin: 150px 117px; animation: wave 1.5s ease-in-out infinite; }
-    @keyframes wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-15deg); } }
-    .hero-shine { animation: shine 1.8s ease-in-out infinite alternate; }
-    @keyframes shine { to { opacity: .45; transform: scale(.75); } }
+    .spider-hero, .hero-web, .hero-float { display: none; }
+    .birthday-penguin { position: relative; z-index: 1; width: min(100%, 350px); height: 100%; animation: hero-bob 2.8s ease-in-out infinite; }
+    @keyframes hero-bob { 50% { transform: translateY(-3px); } }
     .kitten-party-scene {
       width: min(100%, 360px);
       height: 176px;
@@ -519,7 +505,7 @@
     @media (max-width: 540px) {
       .access-card { border-radius: 23px; padding: 27px 20px; }
       .spider-stage { height: 230px; }
-      .spider-hero { width: 165px; max-height: 205px; }
+      .birthday-penguin { width: min(100%, 330px); }
       .kitten-party-scene { height: 158px; }
       .cake-wrap { height: 170px; }
     }
@@ -558,7 +544,7 @@
         <h1 id="greeting">Happy Birthday!</h1>
         <p class="intro">I’m so happy the universe gave me you, my Kitkattuuu 💌</p>
 
-        <div class="spider-stage" role="img" aria-label="An original cute blue web-slinging birthday hero holding a heart">
+        <div class="spider-stage" role="img" aria-label="A cute original blue penguin holding a birthday cupcake under a Happy Birthday greeting">
           <span class="hero-float one" aria-hidden="true">♡</span>
           <span class="hero-float two" aria-hidden="true">✦</span>
           <span class="hero-float three" aria-hidden="true">♡</span>
@@ -611,6 +597,30 @@
             <path d="M81 45c10-8 21-12 32-12s21 4 30 11" fill="none" stroke="#a8def8" stroke-width="2" opacity=".8"/>
             <path d="m110 34 4 7 8 1-6 5 2 8-8-4-7 4 2-8-6-5 8-1z" fill="#ffd477" stroke="#fff" stroke-width="1.5"/>
             <path d="M48 91c-12-1-19-8-19-16 0-5 5-8 9-5 4 2 4 7 7 10m127 10c12-1 19-8 19-16 0-5-5-8-9-5-4 2-4 7-7 10" fill="none" stroke="#a3dcf7" stroke-width="2"/>
+          </svg>
+          <svg class="birthday-penguin" viewBox="0 0 360 270" aria-hidden="true">
+            <text x="180" y="37" text-anchor="middle" fill="#ffd17a" stroke="#fff" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS, sans-serif" font-size="31" font-weight="900" letter-spacing="2">HAPPY</text>
+            <text x="180" y="69" text-anchor="middle" fill="#ffd17a" stroke="#fff" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS, sans-serif" font-size="31" font-weight="900" letter-spacing="1">BIRTHDAY!</text>
+            <path d="M178 85c-47 0-79 34-79 91v44c0 32 25 48 81 48s81-16 81-48v-44c0-57-32-91-83-91z" fill="#4276c2"/>
+            <ellipse cx="179" cy="190" rx="57" ry="68" fill="#fff"/>
+            <path d="M115 144q-31 8-43 55-4 17 17 20l39-37zm130 0q31 8 43 55 4 17-17 20l-39-37z" fill="#315da6" stroke="#234f91" stroke-width="3"/>
+            <path d="M146 119q10-14 23 0m22 0q10-14 23 0" fill="none" stroke="#182a3e" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="156" cy="127" rx="9" ry="11" fill="#182a3e"/>
+            <ellipse cx="221" cy="127" rx="9" ry="11" fill="#182a3e"/>
+            <circle cx="159" cy="123" r="3" fill="#fff"/><circle cx="224" cy="123" r="3" fill="#fff"/>
+            <path d="m178 139 12 2-12 10-12-10z" fill="#ffbf4f" stroke="#e59a39" stroke-width="2"/>
+            <path d="M137 166q42 22 84 0v47q-42 24-84 0z" fill="#36a9c9" stroke="#287f9d" stroke-width="3"/>
+            <path d="M143 175h72m-68 10h64m-57 10h50" stroke="#73d2e0" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+            <path d="M180 207c-8-5-12-9-12-14a6 6 0 0 1 11-3l1 2 1-2a6 6 0 0 1 11 3c0 5-4 9-12 14z" fill="#ff6f9b" stroke="#fff" stroke-width="1.5"/>
+            <path d="M128 93c6-17 24-17 30-1 10-18 31-9 25 7-5 12-27 20-27 20s-25-8-28-20c-1-3-1-5 0-6zm50 8c6-14 20-14 26-1 8-14 25-7 21 6-4 10-22 17-22 17s-20-6-24-16c-1-2-1-4-1-6z" fill="#ef5c71" stroke="#bd4058" stroke-width="2"/>
+            <path d="M228 157q27-19 40-2l-6 28q-17 6-34-6z" fill="#315da6"/>
+            <path d="M272 137h43l-5 36h-33z" fill="#56c9d3" stroke="#348baf" stroke-width="2"/>
+            <path d="M272 137q21-19 43 0l-6 9h-32z" fill="#ff91ad"/>
+            <path d="M277 145h34l-2 8h-31zm-2 12h34l-2 8h-31z" fill="#9fe6e3"/>
+            <path d="M293 137v-13" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <path d="M293 123c-8-8 3-13 1-20 10 8 8 15 3 20z" fill="#ffd45f"/>
+            <ellipse cx="145" cy="266" rx="20" ry="6" fill="#ffbf4f"/><ellipse cx="213" cy="266" rx="20" ry="6" fill="#ffbf4f"/>
+            <path d="m66 91 3 8 9 1-7 6 2 9-7-5-8 5 2-9-7-6 9-1zM302 91l3 7 8 1-6 5 1 8-6-4-7 4 1-8-6-5 8-1z" fill="#f5b85f"/>
           </svg>
         </div>
 
@@ -682,58 +692,37 @@
               <path d="M48 65c5-11 18-11 22 0 4-11 17-11 22 0 0 11-22 25-22 25S48 76 48 65zm109-27c4-8 14-8 17 0 3-8 13-8 17 0 0 9-17 19-17 19s-17-10-17-19z" fill="#9bcfee"/>
             </svg>
           </div>
-          <div class="kitten-party-scene" role="img" aria-label="Three original cute kittens celebrating a birthday with balloons and a tiny cake">
-            <svg class="kitten-party-art" viewBox="0 0 360 176" aria-hidden="true">
-              <path d="M0 142q90-20 180 0t180 0v34H0z" fill="#e1f3ff"/>
-              <g class="party-balloon">
-                <path d="M42 63q-18-17 0-35 18 18 0 35m0 0q-15 8 0 19" fill="#ff9eae" stroke="#fff" stroke-width="2"/>
-                <path d="M42 82q-4 15 3 28" fill="none" stroke="#8ebcda" stroke-width="1.5"/>
-                <path d="M42 34c-8-10 7-17 11-8 5-9 19-2 13 8-5 7-13 12-13 12s-8-5-11-12z" fill="#ff758f"/>
-              </g>
-              <g class="party-balloon second">
-                <path d="M317 57q-17-16 0-34 17 18 0 34m0 0q-14 8 0 18" fill="#ffd779" stroke="#fff" stroke-width="2"/>
-                <path d="M317 75q-4 15 3 31" fill="none" stroke="#8ebcda" stroke-width="1.5"/>
-                <path d="M317 32c-7-9 6-15 10-7 4-8 16-2 11 7-4 6-11 10-11 10s-7-4-10-10z" fill="#ff9eae"/>
-              </g>
-              <path d="m108 34 4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1zM253 56l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#ffc95f"/>
-              <g transform="translate(152 44)">
-                <path d="M0 23h55v16H0z" rx="5" fill="#fff" stroke="#83b8da" stroke-width="2"/>
-                <path d="M0 27q8 8 15 0t15 0 15 0 10 0v8H0z" fill="#f7a7b5"/>
-                <path d="M20 23c-5-8 6-14 9-5 4-9 15-3 9 5" fill="#fff" stroke="#83b8da" stroke-width="2"/>
-                <path d="M27 38v8m-8 0h16" stroke="#83b8da" stroke-width="2" stroke-linecap="round"/>
-              </g>
+          <div class="kitten-party-scene" role="img" aria-label="Two original cute kittens in party hats beside a Happy Birthday to You greeting">
+            <svg class="kitten-party-art" viewBox="0 0 360 190" aria-hidden="true">
+              <rect width="360" height="190" rx="22" fill="#fff2f1"/>
+              <circle cx="180" cy="76" r="68" fill="#fffaf5"/>
+              <path d="m26 30 3 7 8 1-6 5 1 7-6-4-6 4 1-7-6-5 8-1zm307 19 3 6 7 1-5 4 1 7-6-3-5 3 1-7-5-4 7-1zM53 85l2 5 6 1-4 4 1 6-5-3-5 3 1-6-5-4 6-1zM305 91l2 5 6 1-5 4 1 5-4-2-5 2 1-5-4-4 5-1z" fill="#efb34f"/>
+              <path d="M101 35c3-6 12-3 9 3-2 5-9 9-9 9s-7-4-7-9c0-5 6-7 7-3zm158 16c3-6 12-3 9 3-2 5-9 9-9 9s-7-4-7-9c0-5 6-7 7-3z" fill="#ef91a4"/>
+              <text x="180" y="51" text-anchor="middle" fill="#644538" font-family="Georgia,serif" font-size="24" font-style="italic">Happy</text>
+              <text x="180" y="78" text-anchor="middle" fill="#644538" font-family="Georgia,serif" font-size="23" font-style="italic">Birthday</text>
+              <text x="180" y="105" text-anchor="middle" fill="#644538" font-family="Georgia,serif" font-size="22" font-style="italic">To You</text>
               <g class="party-cat left">
-                <ellipse cx="84" cy="151" rx="42" ry="10" fill="#c4dfef"/>
-                <path d="M48 142q-5-31 10-39 4 12 15 14 15-9 28 0 10-4 15-14 13 12 7 39z" fill="#fffaf4" stroke="#9cb7c9" stroke-width="2.5"/>
-                <path d="m60 108-3-22 18 13m18 0 16-14-2 24" fill="#fffaf4" stroke="#9cb7c9" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="m61 101-1-8 8 6m35 1 7-7-1 10" fill="#f6b7c2"/>
-                <ellipse cx="76" cy="121" rx="3" ry="4" fill="#4d5865"/><ellipse cx="95" cy="121" rx="3" ry="4" fill="#4d5865"/>
-                <path d="m82 128 4 3 4-3m-4 3q-1 5-6 5m6-5q1 5 6 5" fill="none" stroke="#986e77" stroke-width="1.7" stroke-linecap="round"/>
-                <ellipse cx="68" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="102" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
-                <path d="M59 139q-11 2-15-5m59 5q11 2 15-5" fill="none" stroke="#9cb7c9" stroke-width="3" stroke-linecap="round"/>
-              </g>
-              <g class="party-cat middle">
-                <ellipse cx="180" cy="153" rx="43" ry="9" fill="#c4dfef"/>
-                <path d="M145 146q-7-37 12-44 7 11 23 12 14-1 22-12 18 8 12 44z" fill="#fff" stroke="#8fa7bb" stroke-width="2.5"/>
-                <path d="m157 107-1-22 19 15m16 0 18-15-2 23" fill="#fff" stroke="#8fa7bb" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="m159 101-1-8 9 6m35 1 7-7-1 10" fill="#f5b3c0"/>
-                <path d="M169 121q5 6 10 0m6 0q5 6 10 0" fill="none" stroke="#4d5865" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="m177 129 3 2 3-2q-3 5-6 0" fill="#e8899a"/>
-                <ellipse cx="162" cy="130" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="198" cy="130" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
-                <path d="M153 140q-9 5-13-2m70 2q9 5 13-2" fill="none" stroke="#8fa7bb" stroke-width="3" stroke-linecap="round"/>
-                <path d="M171 94q8-15 18 0" fill="#82c8e8"/><circle cx="180" cy="92" r="3" fill="#ffcf68"/>
+                <path d="M56 182q-3-30 15-34 12 12 29 0 18 4 15 34z" fill="#ffe3c7" stroke="#8f6d62" stroke-width="2.5"/>
+                <path d="m64 151-3-26 22 16m21 0 18-19-2 30" fill="#ffe3c7" stroke="#8f6d62" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="m67 142-1-10 10 7m32 0 9-10-1 13" fill="#f3abb0"/>
+                <path d="m70 124 12-29 14 26z" fill="#ffbf55" stroke="#8f6d62" stroke-width="2"/>
+                <path d="m75 113 14 3m-19 1 17 3" stroke="#fff" stroke-width="3"/>
+                <circle cx="79" cy="157" r="2.8" fill="#513f39"/><circle cx="98" cy="157" r="2.8" fill="#513f39"/>
+                <path d="m84 164 4 3 4-3m-4 3q-1 5-5 5m5-5q1 5 5 5" fill="none" stroke="#8a5d62" stroke-width="1.6" stroke-linecap="round"/>
+                <ellipse cx="72" cy="164" rx="5" ry="3" fill="#ef9ca9"/><ellipse cx="105" cy="164" rx="5" ry="3" fill="#ef9ca9"/>
+                <path d="M59 176q-13-5-17-18m71 18q13-5 17-18" fill="none" stroke="#8f6d62" stroke-width="4" stroke-linecap="round"/>
               </g>
               <g class="party-cat right">
-                <ellipse cx="276" cy="151" rx="41" ry="10" fill="#c4dfef"/>
-                <path d="M240 142q-5-32 10-40 5 12 17 14 15-9 28 0 10-4 15-14 13 12 7 40z" fill="#d9c9c5" stroke="#9e9ca6" stroke-width="2.5"/>
-                <path d="m252 108-3-22 18 13m18 0 16-14-2 24" fill="#d9c9c5" stroke="#9e9ca6" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="m253 101-1-8 8 6m35 1 7-7-1 10" fill="#f1b2bf"/>
-                <ellipse cx="268" cy="121" rx="3" ry="4" fill="#4d5865"/><ellipse cx="287" cy="121" rx="3" ry="4" fill="#4d5865"/>
-                <path d="m274 128 4 3 4-3m-4 3q-1 5-6 5m6-5q1 5 6 5" fill="none" stroke="#986e77" stroke-width="1.7" stroke-linecap="round"/>
-                <ellipse cx="260" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/><ellipse cx="294" cy="129" rx="6" ry="3" fill="#f3a4b1" opacity=".75"/>
-                <path d="M251 139q-10 3-14-4m58 4q10 3 14-4" fill="none" stroke="#9e9ca6" stroke-width="3" stroke-linecap="round"/>
+                <path d="M244 182q-3-30 15-34 12 12 29 0 18 4 15 34z" fill="#d8eee6" stroke="#7e7779" stroke-width="2.5"/>
+                <path d="m252 151-3-26 22 16m21 0 18-19-2 30" fill="#fffaf5" stroke="#7e7779" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="m255 142-1-10 10 7m32 0 9-10-1 13" fill="#efb4bb"/>
+                <path d="m258 124 12-29 14 26z" fill="#ef7c83" stroke="#7e7779" stroke-width="2"/>
+                <path d="m263 113 14 3m-19 1 17 3" stroke="#fff" stroke-width="3"/>
+                <path d="M263 157q5 6 10 0m7 0q5 6 10 0" fill="none" stroke="#513f39" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="m273 165 4 3 4-3q-4 6-8 0" fill="#e98598"/>
+                <ellipse cx="260" cy="166" rx="5" ry="3" fill="#ef9ca9"/><ellipse cx="294" cy="166" rx="5" ry="3" fill="#ef9ca9"/>
+                <path d="M247 176q-13-5-17-18m71 18q13-5 17-18" fill="none" stroke="#7e7779" stroke-width="4" stroke-linecap="round"/>
               </g>
-              <path d="M124 77c4-7 13-2 9 4-3 5-10 8-10 8s-7-5-7-10c0-5 7-7 8-2zm104 8c3-5 10-2 7 3-2 4-8 6-8 6s-6-4-6-8c0-4 6-6 7-1z" fill="#f28fa3"/>
             </svg>
           </div>
           <p class="wish">
