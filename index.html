@@ -194,6 +194,7 @@
       background: linear-gradient(135deg, #fff0f3, #fff7eb);
       animation: arrive .5s ease both;
     }
+    #final-page #answer { display: block; margin-top: 0; }
     #answer h2 { margin: 0 0 8px; color: #b94e70; font-family: Georgia, serif; font-size: 27px; }
     #answer p { margin: 0; color: #75586a; line-height: 1.7; }
     .heart {
@@ -436,6 +437,36 @@
     footer { color: #7794aa; }
     .penguin-scene, #gift-open, #gift-hint { display: none !important; }
     .birthday-site.locked { display: none; }
+    .access-screen.book-hidden { display: none; }
+    #birthday-site .book-page { display: none; }
+    #birthday-site .book-page.active {
+      display: block;
+      animation: book-page-open 1.05s cubic-bezier(.2,.78,.2,1) both;
+      transform-origin: left center;
+      backface-visibility: hidden;
+    }
+    .book-page-count {
+      margin: 20px 0 0;
+      color: #7393ad;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .book-navigation {
+      display: flex;
+      justify-content: center;
+      margin-top: 22px;
+    }
+    .book-back-button {
+      min-height: 42px;
+      padding: 0 20px;
+      border: 1px solid #c9e5f5;
+      background: #f2f9ff;
+      color: #397ca8;
+      box-shadow: 0 4px 0 #d3eaf7;
+    }
+    .book-back-button:hover { background: #e5f4ff; }
     .access-screen {
       display: grid;
       min-height: 100svh;
@@ -573,6 +604,7 @@
         <button class="unlock-button" type="submit">UNLOCK MY SURPRISE 💌</button>
         <p class="code-error" id="code-error" role="alert" aria-live="polite"></p>
       </form>
+      <p class="book-page-count">Page 1 of 3</p>
       <footer>Made just for you, with love ♡</footer>
     </div>
   </section>
@@ -581,7 +613,7 @@
   <span class="sparkle three" aria-hidden="true">✦</span>
   <main id="birthday-site" class="birthday-site locked" aria-hidden="true">
     <div class="gingham-frame">
-      <section class="card" aria-labelledby="greeting">
+      <section class="card book-page active" id="yes-no-page" aria-labelledby="greeting">
         <span class="eyebrow">A birthday wish, just for you ✨</span>
         <h1 id="greeting">Happy Birthday!</h1>
         <p class="intro">I’m so happy the universe gave me you, my Kitkattuuu 💌</p>
@@ -780,8 +812,15 @@
             <button id="yes" type="button">YES! 💖</button>
             <button id="no" type="button">No 🙈</button>
           </div>
+          <div class="book-navigation">
+            <button class="book-back-button" id="back-to-code" type="button">← Back to code</button>
+          </div>
+          <p class="book-page-count">Page 2 of 3</p>
+        </div>
+      </section>
 
-          <div id="answer" role="region" aria-labelledby="answer-heading">
+      <section class="card book-page" id="final-page" aria-labelledby="answer-heading" aria-hidden="true">
+        <div id="answer" role="region" aria-labelledby="answer-heading">
             <h2 id="answer-heading">YAY! My heart just did a happy dance! 🥹💙</h2>
             <p>Heheee, my babyyyy, you chose YES! 🥹💗 Do you know how happy that little YES makes me? If I could, I’d run to you right now, hug you so tightly, and remind you how much you mean to me. You’re my favourite human and my little happiness, Kitkattuuu. 🎂🫂</p>
             <div id="bonus-wishes">
@@ -796,6 +835,10 @@
             <div class="quote"><span>🍫</span>"Every KitKat and Soanpapdi will remind me of you."</div>
             <div class="quote"><span>💌</span>"Your smile is my favourite thing, today and always."</div>
           </div>
+          <div class="book-navigation">
+            <button class="book-back-button" id="back-to-question" type="button">← Back to YES / NO</button>
+          </div>
+          <p class="book-page-count">Page 3 of 3</p>
           <footer>Made with all my love, just for you ♡</footer>
         </div>
       </section>
@@ -816,24 +859,45 @@
         return;
       }
       document.getElementById("code-error").textContent = "";
-      accessScreen.remove();
+      accessScreen.classList.add("book-hidden");
       const birthdaySite = document.getElementById("birthday-site");
       birthdaySite.classList.remove("locked");
       birthdaySite.classList.add("book-opening");
       birthdaySite.setAttribute("aria-hidden", "false");
-      const bubbles = document.createElement("div");
-      bubbles.className = "heart-bubbles";
-      bubbles.setAttribute("aria-hidden", "true");
-      for (let index = 0; index < 12; index += 1) {
-        const bubble = document.createElement("span");
-        bubble.className = "heart-bubble";
-        bubble.textContent = "♥";
-        bubble.style.left = `${(index * 37 + 8) % 96}%`;
-        bubble.style.setProperty("--duration", `${8 + index % 5}s`);
-        bubble.style.setProperty("--delay", `${-(index * 1.15)}s`);
-        bubbles.appendChild(bubble);
+      document.getElementById("yes-no-page").classList.add("active");
+      document.getElementById("yes-no-page").setAttribute("aria-hidden", "false");
+      if (!document.querySelector(".heart-bubbles")) {
+        const bubbles = document.createElement("div");
+        bubbles.className = "heart-bubbles";
+        bubbles.setAttribute("aria-hidden", "true");
+        for (let index = 0; index < 12; index += 1) {
+          const bubble = document.createElement("span");
+          bubble.className = "heart-bubble";
+          bubble.textContent = "♥";
+          bubble.style.left = `${(index * 37 + 8) % 96}%`;
+          bubble.style.setProperty("--duration", `${8 + index % 5}s`);
+          bubble.style.setProperty("--delay", `${-(index * 1.15)}s`);
+          bubbles.appendChild(bubble);
+        }
+        document.body.appendChild(bubbles);
       }
-      document.body.appendChild(bubbles);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    document.getElementById("back-to-code").addEventListener("click", () => {
+      document.getElementById("yes-no-page").classList.remove("active");
+      document.getElementById("yes-no-page").setAttribute("aria-hidden", "true");
+      document.getElementById("final-page").classList.remove("active");
+      document.getElementById("final-page").setAttribute("aria-hidden", "true");
+      document.getElementById("birthday-site").classList.add("locked");
+      document.getElementById("birthday-site").setAttribute("aria-hidden", "true");
+      accessScreen.classList.remove("book-hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    document.getElementById("back-to-question").addEventListener("click", () => {
+      document.getElementById("final-page").classList.remove("active");
+      document.getElementById("final-page").setAttribute("aria-hidden", "true");
+      document.getElementById("yes-no-page").classList.add("active");
+      document.getElementById("yes-no-page").setAttribute("aria-hidden", "false");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
     const stage = document.getElementById("button-stage");
@@ -886,9 +950,12 @@
       moveNoButton();
     });
     document.getElementById("yes").addEventListener("click", () => {
-      document.getElementById("answer").style.display = "block";
       document.getElementById("bonus-wishes").classList.add("visible");
-      document.getElementById("answer").scrollIntoView({ behavior: "smooth", block: "center" });
+      document.getElementById("yes-no-page").classList.remove("active");
+      document.getElementById("yes-no-page").setAttribute("aria-hidden", "true");
+      document.getElementById("final-page").classList.add("active");
+      document.getElementById("final-page").setAttribute("aria-hidden", "false");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       for (let i = 0; i < 46; i += 1) {
         const heart = document.createElement("span");
         heart.className = "heart";
